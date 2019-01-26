@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
+    }
+
+    void Start() {
         StartGame();
     }
 
@@ -24,9 +27,13 @@ public class GameManager : MonoBehaviour {
             playerIDs.Add(c.playerId);
             playerScores.Add(c.playerId, 0);
         }
+
+        UIManager.instance.CreateScoreUI();
+        RoundManager.instance.NextRound();
     }
 
     public static void ChangeScore(int f, int score) {
         playerScores[f] += score;
+        UIManager.instance.UpdateScoreUI();
     }
 }

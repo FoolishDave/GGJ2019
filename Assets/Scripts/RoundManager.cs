@@ -23,7 +23,6 @@ public class RoundManager : MonoBehaviour {
     void Awake() {
         instance = this;
         rounds = new List<RoundAbstract>(GetComponentsInChildren<RoundAbstract>());
-        NextRound();
     }
 
     void Update() {
