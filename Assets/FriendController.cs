@@ -34,9 +34,12 @@ public class FriendController : MonoBehaviour
     private bool knockedDown;
     private float knockdownTimer;
 
+    private void Awake() {
+        rigid = GetComponent<Rigidbody>();
+    }
+
     void Start() {
         player = ReInput.players.GetPlayer(playerId);
-        rigid = GetComponent<Rigidbody>();
     }
 
     void Update() {
