@@ -1,22 +1,144 @@
 ﻿using Rewired;
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    public GameObject playerObj;
+    public static PlayerManager Instance;
 
-    // Update is called once per frame
+    public int NumPlayers
+    {
+        get
+        {
+            return players.Where(p => p != null).Count();
+        }
+    }
+
+    public Player[] Players
+    {
+        get
+        {
+            return players.ToArray();
+        }
+    }
+
+    public GameObject[] PlayerObjects
+    {
+        get
+        {
+            GameObject[] objects = new GameObject[players.Count];
+            for (int i = 0; i < players.Count; i++) {
+                objects[i] = playerObjects[players[i]];
+            }
+            return objects;
+        }
+    }
+
+    public GameObject playerObj;
+    public List<Color> playerColors = new List<Color>();
+
+    private List<Player> players = new List<Player>();
+    private Dictionary<Player, GameObject> playerObjects = new Dictionary<Player, GameObject>();
+
+    private void OnEnable()
+    {
+        if (Instance != null) Destroy(this);
+        else Instance = this;
+
+        DontDestroyOnLoad(gameObject);
+    }
+
     void Update()
     {
         foreach (Player player in ReInput.players.AllPlayers)
         {
-            if (player.GetAnyButton() && !player.isPlaying)
+            if (player.GetAnyButton() && !player.GetButton("Leave") && !player.isPlaying)
             {
-                GameObject newPlayer = Instantiate(playerObj);
-                newPlayer.GetComponent<FriendController>().playerId = player.id;
+                SpawnPlayer(player.id);
             }
         }
     }
+
+    public void SpawnPlayer(int playerId)
+    {
+        SpawnPlayer(ReInput.players.GetPlayer(playerId));
+    }
+
+    public void SpawnPlayer(Player player)
+    {
+        player.isPlaying = true;
+
+        PlayerJoinedArgs args = new PlayerJoinedArgs();
+        args.player = player;
+        args.playerId = player.id;
+        OnPlayerJoined(args);
+
+        GameObject newPlayer = Instantiate(playerObj);
+        FriendController controller = newPlayer.GetComponent<FriendController>();
+        controller.playerId = player.id;
+        controller.Respawn();
+
+        if (players.Any(p => p == null)) {
+            int index = players.FindIndex(p => p == null);
+            Debug.Log("Player spawned as player: " + index);
+            players[index] = player;
+            newPlayer.GetComponent<Renderer>().material.color = playerColors[index];
+        } else {
+            Debug.Log("Spawned as player: " + players.Count);
+            newPlayer.GetComponent<Renderer>().material.color = playerColors[players.Count];
+            players.Add(player);
+
+        }
+        playerObjects.Add(player, newPlayer);
+    }
+
+    public void DespawnPlayer(int playerId)
+    {
+        DespawnPlayer(ReInput.players.GetPlayer(playerId));
+    }
+
+    public void DespawnPlayer(Player player)
+    {
+        PlayerLeftArgs args = new PlayerLeftArgs();
+        args.player = player;
+        args.playerId = player.id;
+        OnPlayerLeft(args);
+
+        player.isPlaying = false;
+        GameObject playerObject = playerObjects[player];
+        players[players.IndexOf(player)] = null;
+        playerObjects.Remove(player);
+        Destroy(playerObject);
+    }
+
+    public event EventHandler<PlayerJoinedArgs> PlayerJoined;
+    public event EventHandler<PlayerLeftArgs> PlayerLeft;
+
+    protected virtual void OnPlayerJoined(PlayerJoinedArgs e)
+    {
+        PlayerJoined?.Invoke(this, e);
+    }
+
+    protected virtual void OnPlayerLeft(PlayerLeftArgs e)
+    {
+        PlayerLeft?.Invoke(this, e);
+    }
 }
+
+public class PlayerJoinedArgs : EventArgs
+{
+    public int playerId;
+    public Player player;
+    public int playerNum;
+}
+
+public class PlayerLeftArgs : EventArgs
+{
+    public int playerId;
+    public Player player;
+    public int playerNum;
+}
+
