@@ -133,6 +133,7 @@ public class FriendController : MonoBehaviour
     }
 
     public void Respawn() {
+        rigid.velocity = Vector3.zero;
         transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 4, Random.Range(-1f, 1f));
         KnockDown(.5f);
         transform.eulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));

@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerId: 0
+  playerNum: 0
   speed: 0.04
   throwAngle: -30
   throwForce: 150
@@ -161,5 +162,6 @@ MonoBehaviour:
   rotateSpeed: 300
   knockoverImpulse: 0.3
   knockdownTime: 0.2
+  knockdownCooldown: 2
   pickupBox: {x: 0.3, y: 0.6, z: 0.3}
   pickupPoint: {fileID: 714647743287608107}

@@ -85,10 +85,10 @@ public class PlayerManager : MonoBehaviour
             args.playerNum = index;
             Debug.Log("Player spawned as player: " + index);
             players[index] = player;
-            newPlayer.GetComponent<Renderer>().material.color = playerColors[index];
+            newPlayer.GetComponent<Renderer>().material.SetColor("_BaseColor", playerColors[index]);
         } else {
             Debug.Log("Spawned as player: " + players.Count);
-            newPlayer.GetComponent<Renderer>().material.color = playerColors[players.Count];
+            newPlayer.GetComponent<Renderer>().material.SetColor("_BaseColor", playerColors[players.Count]);
             args.playerNum = players.Count;
             players.Add(player);
 
