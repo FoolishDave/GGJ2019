@@ -83,12 +83,14 @@ public class PlayerManager : MonoBehaviour
 
         if (players.Any(p => p == null)) {
             int index = players.FindIndex(p => p == null);
+            args.playerNum = index;
             Debug.Log("Player spawned as player: " + index);
             players[index] = player;
             newPlayer.GetComponent<Renderer>().material.color = playerColors[index];
         } else {
             Debug.Log("Spawned as player: " + players.Count);
             newPlayer.GetComponent<Renderer>().material.color = playerColors[players.Count];
+            args.playerNum = players.Count;
             players.Add(player);
 
         }
@@ -105,11 +107,12 @@ public class PlayerManager : MonoBehaviour
         PlayerLeftArgs args = new PlayerLeftArgs();
         args.player = player;
         args.playerId = player.id;
+        args.playerNum = players.IndexOf(player);
         OnPlayerLeft(args);
 
         player.isPlaying = false;
         GameObject playerObject = playerObjects[player];
-        players[players.IndexOf(player)] = null;
+        players[args.playerNum] = null;
         playerObjects.Remove(player);
         Destroy(playerObject);
     }

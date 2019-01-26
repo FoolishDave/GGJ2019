@@ -50,10 +50,7 @@ public class FriendController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (!knockedDown && knockdownTimer <= 0f && collision.impulse.sqrMagnitude > knockoverImpulse) {
-            Debug.Log("Knocked down.");
-            rigid.constraints = RigidbodyConstraints.None;
-            knockedDown = true;
-            knockdownTimer = knockdownTime * collision.impulse.sqrMagnitude;
+            KnockDown(collision.impulse.sqrMagnitude);
         }
     }
 
@@ -133,8 +130,7 @@ public class FriendController : MonoBehaviour
 
     public void Respawn() {
         transform.position = new Vector3(Random.Range(-2.5f, 2.5f), 4, Random.Range(-1f, 1f));
-        knockedDown = true;
-        knockdownTimer = 1f;
+        KnockDown(.5f);
         transform.eulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
     }
 
@@ -144,5 +140,12 @@ public class FriendController : MonoBehaviour
         knockdownTimer = knockdownCooldown;
         transform.DOMoveY(transform.position.y + .2f, .2f);
         transform.DORotate(Vector3.zero, .3f);
+    }
+
+    private void KnockDown(float impulse) {
+        Debug.Log("Knocked down.");
+        rigid.constraints = RigidbodyConstraints.None;
+        knockedDown = true;
+        knockdownTimer = knockdownTime * impulse;
     }
 }
