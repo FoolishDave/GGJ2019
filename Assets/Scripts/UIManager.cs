@@ -54,7 +54,7 @@ public class UIManager : MonoBehaviour {
 
     public void UpdateScoreUI() {
         for(int i = 0; i < scoreTexts.Count; i++) {
-            scoreTexts[i].text = "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + ">Player " + i + ":</color> " + GameManager.playerScores[i];
+            scoreTexts[i].text = "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + ">P" + (i+1) + ":</color> " + GameManager.playerScores[i];
         }
     }
 }

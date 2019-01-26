@@ -47,8 +47,13 @@ public class RoundManager : MonoBehaviour {
         foreach (FriendController f in playersToRespawn) {
             f.Respawn();
         }
+        playersToRespawn.Clear();
 
-        currentRound = rounds[Random.Range(0, rounds.Count)];
+        RoundAbstract next = currentRound;
+        while (currentRound == next) {
+            next = rounds[Random.Range(0, rounds.Count)];
+        }
+        currentRound = next;
         settings = currentRound.settings;
         currentRound.StartRound();
         UIManager.instance.UpdateRoundUI(currentRound);
