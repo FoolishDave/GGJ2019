@@ -10,7 +10,7 @@ public class UIManager : MonoBehaviour {
 
     public TextMeshProUGUI timerText;
 
-    public Dictionary<int, TextMeshProUGUI> scoreTexts = new Dictionary<int, TextMeshProUGUI>();
+    public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();
     public GameObject scoreTextPrefab;
     public Transform scoreTextParent;
 
@@ -25,12 +25,13 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateTimerUI(float time) {
+        timerText.enabled = time > 0;
         timerText.text = ((int) time).ToString();
     }
 
     public void CreateScoreUI() {
         int index = 0;
-        foreach (int id in GameManager.playerIDs) {
+        for (int id = 0; id < PlayerManager.Instance.Players.Length; id++) {
             GameObject t = Instantiate(scoreTextPrefab);
             t.transform.SetParent(scoreTextParent);
             RectTransform textRT = t.GetComponent<RectTransform>();
@@ -44,7 +45,7 @@ public class UIManager : MonoBehaviour {
             pos.y += (index * textRT.rect.height);
             textRT.anchoredPosition = pos;
 
-            scoreTexts.Add(id, t.GetComponent<TextMeshProUGUI>());
+            scoreTexts.Add(t.GetComponent<TextMeshProUGUI>());
             index++;
         }
         scoreTextPrefab.SetActive(false);
@@ -52,8 +53,8 @@ public class UIManager : MonoBehaviour {
     }
 
     public void UpdateScoreUI() {
-        foreach(KeyValuePair<int, TextMeshProUGUI> p in scoreTexts) {
-            p.Value.text = "Player " + p.Key + ": " + GameManager.playerScores[p.Key];
+        for(int i = 0; i < scoreTexts.Count; i++) {
+            scoreTexts[i].text = "Player " + i + ": " + GameManager.playerScores[i];
         }
     }
 }
