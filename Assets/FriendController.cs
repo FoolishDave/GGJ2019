@@ -9,6 +9,7 @@ public class FriendController : MonoBehaviour
 {
     // Probably should be a getter method but can't be bothered.
     public int playerId = 0;
+    public int playerNum = 0;
     // Things to be tweaked ewe
     public float speed = .75f;
     public float throwAngle = 45f;
