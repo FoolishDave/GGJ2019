@@ -12,7 +12,17 @@ ModelImporter:
     2300000: sideTable
     3300000: sideTable
     4300000: sideTable
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 2b1c0e20b788db048aa60b276c667f4c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: 7c2ba959553f1c74c88153008ab4632f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

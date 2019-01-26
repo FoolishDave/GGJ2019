@@ -8,16 +8,19 @@ public class GameManager : MonoBehaviour {
     //public static List<FriendController> players;
     public static Dictionary<int, int> playerScores;
 
+    public bool gameRunning;
+
     void Awake() {
         instance = this;
     }
 
     void Start() {
-        //StartGame();
+        PlayerManager.Instance.PlayerJoined += PlayerJoined;
+        PlayerManager.Instance.PlayerLeft += PlayerLeft;
     }
 
     public void StartGame() {
-
+        gameRunning = true;
         playerScores = new Dictionary<int, int>();
         for (int i = 0; i < PlayerManager.Instance.Players.Length; i++) {
             playerScores.Add(i, 0);
@@ -40,5 +43,19 @@ public class GameManager : MonoBehaviour {
             }
         }
         return l;
+    }
+
+    private void PlayerJoined(object sender, PlayerJoinedArgs args) {
+        if (gameRunning) {
+            playerScores.Add(args.playerId, 0);
+            UIManager.instance.UpdateScoreUI();
+        }
+    }
+
+    private void PlayerLeft(object sender, PlayerLeftArgs args) {
+        if (gameRunning) { 
+            playerScores.Remove(args.playerId);
+            UIManager.instance.UpdateScoreUI();
+        }
     }
 }

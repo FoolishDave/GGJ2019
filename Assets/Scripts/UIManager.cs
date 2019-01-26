@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class UIManager : MonoBehaviour {
     public static UIManager instance;
     public TextMeshProUGUI titleText;
     public TextMeshProUGUI descText;
+    public TextMeshProUGUI scoreText;
 
     public TextMeshProUGUI timerText;
 
-    public List<TextMeshProUGUI> scoreTexts = new List<TextMeshProUGUI>();
     public GameObject scoreTextPrefab;
     public Transform scoreTextParent;
 
@@ -30,6 +31,7 @@ public class UIManager : MonoBehaviour {
     }
 
     public void CreateScoreUI() {
+        /*
         int index = 0;
         for (int id = 0; id < PlayerManager.Instance.Players.Length; id++) {
             GameObject t = Instantiate(scoreTextPrefab);
@@ -45,16 +47,18 @@ public class UIManager : MonoBehaviour {
             pos.y += (index * textRT.rect.height);
             textRT.anchoredPosition = pos;
 
-            scoreTexts.Add(t.GetComponent<TextMeshProUGUI>());
             index++;
         }
-        scoreTextPrefab.SetActive(false);
+        scoreTextPrefab.SetActive(false);*/
         UpdateScoreUI();
     }
 
     public void UpdateScoreUI() {
-        for(int i = 0; i < scoreTexts.Count; i++) {
-            scoreTexts[i].text = "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + ">P" + (i+1) + ":</color> " + GameManager.playerScores[i];
+        scoreText.text = "";
+        for(int i = 0; i < PlayerManager.Instance.NumPlayers; i++) {
+            if (PlayerManager.Instance.Players[i] != null) {
+                scoreText.text += "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + ">P" + (i + 1) + ":</color> " + GameManager.playerScores[i] + "\n";
+            }
         }
     }
 }

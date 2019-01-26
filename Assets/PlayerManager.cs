@@ -114,13 +114,14 @@ public class PlayerManager : MonoBehaviour
         args.player = player;
         args.playerId = player.id;
         args.playerNum = players.IndexOf(player);
-        OnPlayerLeft(args);
+        
 
         player.isPlaying = false;
         GameObject playerObject = playerObjects[player];
         players[args.playerNum] = null;
         playerObjects.Remove(player);
         Destroy(playerObject);
+        OnPlayerLeft(args);
     }
 
     public event EventHandler<PlayerJoinedArgs> PlayerJoined;

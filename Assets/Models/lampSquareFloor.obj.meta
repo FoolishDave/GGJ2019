@@ -12,7 +12,17 @@ ModelImporter:
     2300000: lampSquareFloor
     3300000: lampSquareFloor
     4300000: lampSquareFloor
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: lamp
+    second: {fileID: 2100000, guid: ede8eb3a259ce264287bd3e666048ab2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 3eeac772eb241074ab0c7680daf74188, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

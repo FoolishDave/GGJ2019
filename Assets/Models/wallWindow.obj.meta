@@ -19,7 +19,27 @@ ModelImporter:
     3300002: window
     4300000: wallWindow
     4300002: window
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: b77b4dd4223a1da44a34022dd83b3016, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass
+    second: {fileID: 2100000, guid: 5a8edef60e4149642882b7a1ccef00da, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalDark
+    second: {fileID: 2100000, guid: 2e3ccfcd020978a4cbbc2914d9e5bdb2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: 71f211245692a7c43842e0987fb490d1, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

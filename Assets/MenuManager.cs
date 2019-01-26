@@ -7,6 +7,13 @@ public class MenuManager : MonoBehaviour
     public static MenuManager Instance;
 
     public GameObject optionsMenu;
+    public GameObject playDecal;
+    public GameObject optionsDecal;
+    public GameObject quitDecal;
+
+    public GameObject gameUI;
+    public GameObject menuUI;
+
 
     private void OnEnable() {
         if (Instance != null) Destroy(this);
@@ -26,7 +33,12 @@ public class MenuManager : MonoBehaviour
     }
 
     public void PlayGame() {
-
+        playDecal.SetActive(false);
+        optionsDecal.SetActive(false);
+        quitDecal.SetActive(false);
+        gameUI.SetActive(true);
+        menuUI.SetActive(false);
+        GameManager.instance.StartGame();
     }
 
     public void GoToOptions() {

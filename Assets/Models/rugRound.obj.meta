@@ -12,7 +12,17 @@ ModelImporter:
     2300000: rugRound
     3300000: rugRound
     4300000: rugRound
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carpet
+    second: {fileID: 2100000, guid: 4de250c9cee82c144b1e90202380b834, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carpetDarker
+    second: {fileID: 2100000, guid: 9d632ec9cf993204ab2b597e41c3ea1f, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

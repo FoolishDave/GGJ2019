@@ -22,9 +22,11 @@ public class MenuTriggerButton : MonoBehaviour
     void Update()
     {
         int playersReqired = requireAllPlayers ? PlayerManager.Instance.NumPlayers : 1;
-        if (playersStanding >= playersReqired) {
+        if (playersReqired > 0 && playersStanding >= playersReqired) {
             timer -= Time.deltaTime;
         } else {
+            if (playersStanding > 0)
+                Debug.Log("Have " + playersStanding + " waiting on " + PlayerManager.Instance.NumPlayers);
             timer = timeToActivate;
             invoked = false;
         }

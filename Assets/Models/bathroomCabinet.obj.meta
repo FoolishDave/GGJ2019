@@ -18,7 +18,12 @@ ModelImporter:
     3300002: door
     4300000: bathroomCabinet
     4300002: door
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: e1d5eb35bcfcf57409b2f955c37760c5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0

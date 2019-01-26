@@ -13,7 +13,22 @@ ModelImporter:
     2300000: wallCorner
     3300000: wallCorner
     4300000: wallCorner
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 3dba2e585a05eb144b30d25fea09852c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalDark
+    second: {fileID: 2100000, guid: 2c8aff5fd3b5f434cb93ce935fad3dc8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: e1d5eb35bcfcf57409b2f955c37760c5, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
