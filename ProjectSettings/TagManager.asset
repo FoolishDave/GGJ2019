@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Pickup
   - Ground
+  - SoccerBall
   layers:
   - Default
   - TransparentFX
