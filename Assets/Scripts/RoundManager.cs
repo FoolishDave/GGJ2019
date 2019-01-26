@@ -42,8 +42,10 @@ public class RoundManager : MonoBehaviour {
     public void NextRound() {
         if (rounds.Count == 0) Debug.Log("Error: No Rounds");
 
+        timer = 0f; // Cancels timer if still active
+        UIManager.instance.UpdateTimerUI(0f);
         foreach (FriendController f in playersToRespawn) {
-            //f.Respawn();
+            f.Respawn();
         }
 
         currentRound = rounds[Random.Range(0, rounds.Count)];

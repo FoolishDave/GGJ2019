@@ -1,4 +1,5 @@
-﻿using Rewired;
+﻿using Cinemachine;
+using Rewired;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -39,6 +40,7 @@ public class PlayerManager : MonoBehaviour
 
     public GameObject playerObj;
     public List<Color> playerColors = new List<Color>();
+    public CinemachineTargetGroup targetGroup;
 
     private List<Player> players = new List<Player>();
     private Dictionary<Player, GameObject> playerObjects = new Dictionary<Player, GameObject>();
@@ -77,9 +79,6 @@ public class PlayerManager : MonoBehaviour
         OnPlayerJoined(args);
 
         GameObject newPlayer = Instantiate(playerObj);
-        FriendController controller = newPlayer.GetComponent<FriendController>();
-        controller.playerId = player.id;
-        controller.Respawn();
 
         if (players.Any(p => p == null)) {
             int index = players.FindIndex(p => p == null);
@@ -94,7 +93,14 @@ public class PlayerManager : MonoBehaviour
             players.Add(player);
 
         }
+
+        FriendController controller = newPlayer.GetComponent<FriendController>();
+        controller.playerId = player.id;
+        controller.playerNum = args.playerNum;
+        controller.Respawn();
+
         playerObjects.Add(player, newPlayer);
+        targetGroup.AddMember(newPlayer.transform, 1f, 0f);
     }
 
     public void DespawnPlayer(int playerId)

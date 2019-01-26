@@ -9,7 +9,7 @@ public class Survival : RoundAbstract {
     override public void StartRound() {
         RoundManager.instance.SetTimer(10f, EndRound);
         RoundManager.instance.onPlayerDeath += OnPlayerDeath;
-        alivePlayers = new List<int>(GameManager.playerIDs);
+        alivePlayers = GameManager.CreateIndexList();
     }
 
     public void OnPlayerDeath(int f) {

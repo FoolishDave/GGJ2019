@@ -1,11 +1,11 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Rewired;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour {
     public static GameManager instance;
-    public static List<FriendController> players;
-    public static List<int> playerIDs;
+    //public static List<FriendController> players;
     public static Dictionary<int, int> playerScores;
 
     void Awake() {
@@ -13,21 +13,16 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start() {
-        StartGame();
+        //StartGame();
     }
 
     public void StartGame() {
-        players = new List<FriendController>();
-        playerIDs = new List<int>();
-        playerScores = new Dictionary<int, int>();
-        
-        foreach (GameObject f in GameObject.FindGameObjectsWithTag("Player")) { // Sorry in advance
-            FriendController c = f.GetComponent<FriendController>();
-            players.Add(c);
-            playerIDs.Add(c.playerId);
-            playerScores.Add(c.playerId, 0);
-        }
 
+        playerScores = new Dictionary<int, int>();
+        for (int i = 0; i < PlayerManager.Instance.Players.Length; i++) {
+            playerScores.Add(i, 0);
+            //players.Add(PlayerManager.Instance.PlayerObjects[i].GetComponent<FriendController>());
+        }
         UIManager.instance.CreateScoreUI();
         RoundManager.instance.NextRound();
     }
@@ -35,5 +30,15 @@ public class GameManager : MonoBehaviour {
     public static void ChangeScore(int f, int score) {
         playerScores[f] += score;
         UIManager.instance.UpdateScoreUI();
+    }
+
+    public static List<int> CreateIndexList() {
+        List<int> l = new List<int>();
+        for(int i = 0; i < PlayerManager.Instance.Players.Length; i++) {
+            if (PlayerManager.Instance.Players != null) {
+                l.Add(i);
+            }
+        }
+        return l;
     }
 }
