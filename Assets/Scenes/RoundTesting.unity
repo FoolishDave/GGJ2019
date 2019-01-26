@@ -1016,7 +1016,7 @@ Transform:
   m_Children:
   - {fileID: 2131075786}
   - {fileID: 1825200817}
-  - {fileID: 2130759864}
+  - {fileID: 2089376567}
   m_Father: {fileID: 1682421153}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1038,7 +1038,7 @@ MonoBehaviour:
     playerRespawn: 1
   wall: {fileID: 1825200816}
   ball: {fileID: 2131075785}
-  ballSpawnPoint: {fileID: 2130759864}
+  ballSpawnPoint: {fileID: 2089376567}
 --- !u!1 &911014028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2040,6 +2040,65 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1702534197
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1702534198}
+  - component: {fileID: 1702534200}
+  - component: {fileID: 1702534199}
+  m_Layer: 0
+  m_Name: LeftGoalTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1702534198
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702534197}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.74, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1825200817}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1702534199
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702534197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5361a478b26a57c4e91c36edf5596ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  leftGoal: 1
+  soccer: {fileID: 794967084}
+--- !u!65 &1702534200
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1702534197}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.67819834, y: 1.0688267, z: 1}
+  m_Center: {x: 3.4003484, y: 2.113083, z: 0}
 --- !u!1 &1825200816
 GameObject:
   m_ObjectHideFlags: 0
@@ -2055,7 +2114,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1825200817
 Transform:
   m_ObjectHideFlags: 0
@@ -2075,6 +2134,8 @@ Transform:
   - {fileID: 2011344664}
   - {fileID: 1535039747}
   - {fileID: 45186015}
+  - {fileID: 1965097387}
+  - {fileID: 1702534198}
   m_Father: {fileID: 794967083}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2090,7 +2151,7 @@ GameObject:
   - component: {fileID: 1965097389}
   - component: {fileID: 1965097388}
   m_Layer: 0
-  m_Name: GoalTrigger
+  m_Name: RightGoalTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2107,8 +2168,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_Father: {fileID: 1825200817}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1965097388
 MonoBehaviour:
@@ -2122,7 +2183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5361a478b26a57c4e91c36edf5596ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftGoal: 1
+  leftGoal: 0
   soccer: {fileID: 794967084}
 --- !u!65 &1965097389
 BoxCollider:
@@ -2135,8 +2196,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.8474946, y: 1.0688267, z: 1}
-  m_Center: {x: 2.8157003, y: 2.113083, z: 0}
+  m_Size: {x: 0.67819834, y: 1.0688267, z: 1}
+  m_Center: {x: 3.4003484, y: 2.113083, z: 0}
 --- !u!1001 &1977635967
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2586,6 +2647,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2087479237}
   m_CullTransparentMesh: 0
+--- !u!1 &2089376566
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2089376567}
+  m_Layer: 0
+  m_Name: Ball Spawn
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2089376567
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089376566}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 3.308, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 794967083}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2100636082
 GameObject:
   m_ObjectHideFlags: 0
@@ -2746,36 +2837,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2100636082}
   m_CullTransparentMesh: 0
---- !u!1 &2130759863
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2130759864}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2130759864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2130759863}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5.54, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 794967083}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2131075785
 GameObject:
   m_ObjectHideFlags: 0
@@ -2795,7 +2856,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2131075786
 Transform:
   m_ObjectHideFlags: 0
