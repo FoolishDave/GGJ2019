@@ -1,0 +1,157 @@
+fileFormatVersion: 2
+guid: 46a15cee2095dbf4d949d86d1b1209d7
+timeCreated: 1446207737
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: cabinetBased
+    100002: cabinetDoor_01
+    100004: cabinetDoor_02
+    100006: cabinetDoor_03
+    100008: cabinetDoor_04
+    100010: cabinetDoor_05
+    100012: cabinetDoor_06
+    100014: drawerDoor_01
+    100016: drawerDoor_02
+    100018: drawerDoor_03
+    100020: drawerDoor_04
+    100022: //RootNode
+    100024: furniture_bedRoom_bed_set03
+    100026: furniture_bedRoom_cabinet_set03
+    100028: furniture_bedRoom_drawer_set03
+    100030: furniture_bedRoom_floorLamps_set03
+    100032: furniture_bedRoom_sofa_set03
+    100034: furniture_bedRoom_table_set03
+    100036: furnitureBedroom_set03:polySurface360
+    400000: cabinetBased
+    400002: cabinetDoor_01
+    400004: cabinetDoor_02
+    400006: cabinetDoor_03
+    400008: cabinetDoor_04
+    400010: cabinetDoor_05
+    400012: cabinetDoor_06
+    400014: drawerDoor_01
+    400016: drawerDoor_02
+    400018: drawerDoor_03
+    400020: drawerDoor_04
+    400022: //RootNode
+    400024: furniture_bedRoom_bed_set03
+    400026: furniture_bedRoom_cabinet_set03
+    400028: furniture_bedRoom_drawer_set03
+    400030: furniture_bedRoom_floorLamps_set03
+    400032: furniture_bedRoom_sofa_set03
+    400034: furniture_bedRoom_table_set03
+    400036: furnitureBedroom_set03:polySurface360
+    2300000: cabinetBased
+    2300002: cabinetDoor_01
+    2300004: cabinetDoor_02
+    2300006: cabinetDoor_03
+    2300008: cabinetDoor_04
+    2300010: cabinetDoor_05
+    2300012: cabinetDoor_06
+    2300014: drawerDoor_01
+    2300016: drawerDoor_02
+    2300018: drawerDoor_03
+    2300020: drawerDoor_04
+    2300022: furniture_bedRoom_bed_set03
+    2300024: furniture_bedRoom_floorLamps_set03
+    2300026: furniture_bedRoom_sofa_set03
+    2300028: furniture_bedRoom_table_set03
+    2300030: furnitureBedroom_set03:polySurface360
+    3300000: cabinetBased
+    3300002: cabinetDoor_01
+    3300004: cabinetDoor_02
+    3300006: cabinetDoor_03
+    3300008: cabinetDoor_04
+    3300010: cabinetDoor_05
+    3300012: cabinetDoor_06
+    3300014: drawerDoor_01
+    3300016: drawerDoor_02
+    3300018: drawerDoor_03
+    3300020: drawerDoor_04
+    3300022: furniture_bedRoom_bed_set03
+    3300024: furniture_bedRoom_floorLamps_set03
+    3300026: furniture_bedRoom_sofa_set03
+    3300028: furniture_bedRoom_table_set03
+    3300030: furnitureBedroom_set03:polySurface360
+    4300000: drawerDoor_01
+    4300002: drawerDoor_02
+    4300004: drawerDoor_03
+    4300006: drawerDoor_04
+    4300008: furnitureBedroom_set03:polySurface360
+    4300010: cabinetDoor_03
+    4300012: cabinetDoor_06
+    4300014: cabinetDoor_02
+    4300016: cabinetDoor_05
+    4300018: cabinetDoor_04
+    4300020: cabinetDoor_01
+    4300022: cabinetBased
+    4300024: furniture_bedRoom_floorLamps_set03
+    4300026: furniture_bedRoom_table_set03
+    4300028: furniture_bedRoom_bed_set03
+    4300030: furniture_bedRoom_sofa_set03
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

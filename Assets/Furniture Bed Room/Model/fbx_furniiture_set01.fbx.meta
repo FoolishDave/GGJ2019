@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: 40d31d11a84410c49a74b8d924e8a59a
+timeCreated: 1446207737
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: cabinetBased
+    100002: cabinetDoor_01
+    100004: cabinetDoor_02
+    100006: //RootNode
+    100008: furniture_bedRoom_bed_set01
+    100010: furniture_bedRoom_bedsideTable_set01
+    100012: furniture_bedRoom_cabinet_set01
+    100014: furniture_bedRoom_sofa_set01
+    100016: furniture_bedRoom_tableLamps_set01
+    400000: cabinetBased
+    400002: cabinetDoor_01
+    400004: cabinetDoor_02
+    400006: //RootNode
+    400008: furniture_bedRoom_bed_set01
+    400010: furniture_bedRoom_bedsideTable_set01
+    400012: furniture_bedRoom_cabinet_set01
+    400014: furniture_bedRoom_sofa_set01
+    400016: furniture_bedRoom_tableLamps_set01
+    2300000: cabinetBased
+    2300002: cabinetDoor_01
+    2300004: cabinetDoor_02
+    2300006: furniture_bedRoom_bed_set01
+    2300008: furniture_bedRoom_bedsideTable_set01
+    2300010: furniture_bedRoom_sofa_set01
+    2300012: furniture_bedRoom_tableLamps_set01
+    3300000: cabinetBased
+    3300002: cabinetDoor_01
+    3300004: cabinetDoor_02
+    3300006: furniture_bedRoom_bed_set01
+    3300008: furniture_bedRoom_bedsideTable_set01
+    3300010: furniture_bedRoom_sofa_set01
+    3300012: furniture_bedRoom_tableLamps_set01
+    4300000: cabinetDoor_02
+    4300002: cabinetBased
+    4300004: cabinetDoor_01
+    4300006: furniture_bedRoom_tableLamps_set01
+    4300008: furniture_bedRoom_bedsideTable_set01
+    4300010: furniture_bedRoom_bed_set01
+    4300012: furniture_bedRoom_sofa_set01
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
