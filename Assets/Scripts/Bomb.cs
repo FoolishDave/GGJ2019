@@ -14,8 +14,12 @@ public class Bomb : MonoBehaviour {
 
     private ParticleSystem ps;
 
+    public AudioClip fuse, explode;
+    public AudioSource audioSource;
+
     private void Awake() {
         ps = GetComponentInChildren<ParticleSystem>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void Thrown() {
@@ -28,9 +32,11 @@ public class Bomb : MonoBehaviour {
         renderer.material = lit;
         Color old = renderer.material.GetColor("_BaseColor");
         DOTween.To(()=>old,x=>renderer.material.SetColor("_BaseColor",x),explodeColor,fuseTime);
-        
+        audioSource.clip = fuse;
+        audioSource.Play();
         yield return new WaitForSeconds(fuseTime);
-
+        audioSource.clip = explode;
+        audioSource.Play();
         ps.Play();
         List<Collider> hit = new List<Collider>(Physics.OverlapSphere(transform.position, blastRadius));
         foreach(Collider c in hit) {

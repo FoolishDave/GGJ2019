@@ -22,6 +22,10 @@ public class FriendHill : RoundAbstract {
             }
             yield return new WaitForSeconds(1f);
         }
+        FriendCircle c;
+        if ((c=GetComponent<FriendCircle>())!=null) {
+            c.GetPlayers();
+        }
         
     }
 
