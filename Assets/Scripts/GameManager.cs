@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour {
     //public static List<FriendController> players;
     public static Dictionary<int, int> playerScores;
 
+    public int winScore = 50;
     public bool gameRunning = false;
 
     void Awake() {
@@ -43,6 +44,20 @@ public class GameManager : MonoBehaviour {
             }
         }
         return l;
+    }
+
+    public bool CheckWin() {
+        List<int> winners = new List<int>();
+        foreach(KeyValuePair<int, int> p in playerScores) {
+            if (p.Value >= winScore) winners.Add(p.Key);
+        }
+        if (winners.Count > 0) {
+            MenuManager.Instance.ShowMenu();
+            gameRunning = false;
+            UIManager.instance.ShowWinText(winners);
+            return true;
+        }
+        return false;
     }
 
     private void PlayerJoined(object sender, PlayerJoinedArgs args) {

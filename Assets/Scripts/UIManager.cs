@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour {
     public TextMeshProUGUI scoreText;
 
     public TextMeshProUGUI timerText;
+    public TextMeshProUGUI winText;
 
     public GameObject scoreTextPrefab;
     public Transform scoreTextParent;
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour {
 
     void Awake() {
         instance = this;
+        HideWinText();
     }
 
     public void UpdateRoundUI(RoundAbstract r) {
@@ -60,5 +62,19 @@ public class UIManager : MonoBehaviour {
                 scoreText.text += "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + ">P" + (i + 1) + ":</color> " + GameManager.playerScores[i] + "\n";
             }
         }
+    }
+
+    public void ShowWinText(List<int> winner) {
+        string winStr = "";
+        foreach(int i in winner) {
+            winStr +=  "<color=#" + ColorUtility.ToHtmlStringRGB(PlayerManager.Instance.playerColors[i]) + "><b>P" + (i + 1) + "</b></color> ";
+        }
+        winStr += " Wins!";
+        winText.text = winStr;
+        winText.enabled = true;
+    }
+
+    public void HideWinText() {
+        winText.enabled = false;
     }
 }

@@ -43,7 +43,17 @@ public class MenuManager : MonoBehaviour
         gameUI.SetActive(true);
         menuUI.SetActive(false);
         questionDecal.SetActive(false);
+        UIManager.instance.HideWinText();
         GameManager.instance.StartGame();
+    }
+
+    public void ShowMenu() {
+        playDecal.SetActive(true);
+        optionsDecal.SetActive(true);
+        quitDecal.SetActive(true);
+        gameUI.SetActive(false);
+        menuUI.SetActive(true);
+        questionDecal.SetActive(true);
     }
 
     public void GoToOptions() {
