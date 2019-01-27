@@ -51,7 +51,7 @@ public class RoundManager : MonoBehaviour {
         }
         playersToRespawn.Clear();
 
-        RoundAbstract next = currentRound;
+        RoundAbstract next = rounds.Count == 1 ? rounds[0] : currentRound;
         while (currentRound == next && rounds.Count > 1) {
             next = rounds[Random.Range(0, rounds.Count)];
         }
