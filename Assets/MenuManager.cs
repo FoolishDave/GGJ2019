@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,6 +12,8 @@ public class MenuManager : MonoBehaviour
     public GameObject playDecal;
     public GameObject optionsDecal;
     public GameObject quitDecal;
+    public GameObject questionDecal;
+    public TextMeshProUGUI questionText;
 
     public GameObject gameUI;
     public GameObject menuUI;
@@ -38,7 +42,18 @@ public class MenuManager : MonoBehaviour
         quitDecal.SetActive(false);
         gameUI.SetActive(true);
         menuUI.SetActive(false);
+        questionDecal.SetActive(false);
+        UIManager.instance.HideWinText();
         GameManager.instance.StartGame();
+    }
+
+    public void ShowMenu() {
+        playDecal.SetActive(true);
+        optionsDecal.SetActive(true);
+        quitDecal.SetActive(true);
+        gameUI.SetActive(false);
+        menuUI.SetActive(true);
+        questionDecal.SetActive(true);
     }
 
     public void GoToOptions() {
@@ -51,5 +66,10 @@ public class MenuManager : MonoBehaviour
 
     public void Quit() {
         Application.Quit();
+    }
+
+    public void GetHelp() {
+        Debug.Log("getting help");
+        questionText.DOFade(1f, 1f).OnComplete(() => questionText.DOFade(0f, .5f));
     }
 }
