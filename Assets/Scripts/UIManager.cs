@@ -75,6 +75,6 @@ public class UIManager : MonoBehaviour {
     }
 
     public void HideWinText() {
-        winText.enabled = false;
+        //winText.enabled = false;
     }
 }

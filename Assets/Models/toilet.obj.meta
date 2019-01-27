@@ -19,7 +19,27 @@ ModelImporter:
     3300002: toilet
     4300000: cover
     4300002: toilet
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: _defaultMat
+    second: {fileID: 2100000, guid: 87c2850fcb6bac1479249f5938970a00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carpetWhite
+    second: {fileID: 2100000, guid: 0524e5418596af146a8003b29bd63205, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalDark
+    second: {fileID: 2100000, guid: a38b86daad9ecbe4597a2040b147755c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metalLight
+    second: {fileID: 2100000, guid: e09deb463a9b50c4bafcdd5261eae703, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
