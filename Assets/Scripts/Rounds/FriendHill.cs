@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class FriendHill : RoundAbstract {
 
-    private List<int> alivePlayers;
+    public FriendCircle circle;
+    public GameObject stuff;
 
     override public void StartRound() {
-        RoundManager.instance.SetTimer(10f, EndRound);
-        RoundManager.instance.onPlayerDeath += OnPlayerDeath;
-        alivePlayers = GameManager.CreateIndexList();
+        RoundManager.instance.SetTimer(20f, EndRound);
+        circle.Clear();
+        stuff.SetActive(true);
+        StartCoroutine(AwardPoints());
+
     }
 
-    public void OnPlayerDeath(int f) {
+    IEnumerator AwardPoints() {
+        for (int i = 0; i < 20; i++) {
+            foreach(int p in circle.GetPlayers()) {
+                GameManager.ChangeScore(p, 1);
+            }
+            yield return new WaitForSeconds(1f);
+        }
+        
     }
+
+
 
     override public void EndRound() {
-        RoundManager.instance.onPlayerDeath -= OnPlayerDeath;
+        stuff.SetActive(false);
         RoundManager.instance.NextRound();
     }
 }
