@@ -27,6 +27,7 @@ public class FriendController : MonoBehaviour
     private Rigidbody rigid;
     private Player player;
     private Vector3 movementVector;
+    private ParticleSystem runParticle;
     // Input variables uwu
     private bool jump;
     private bool interact;
@@ -38,10 +39,14 @@ public class FriendController : MonoBehaviour
 
     private void Awake() {
         rigid = GetComponent<Rigidbody>();
+        runParticle = GetComponentInChildren<ParticleSystem>();
     }
 
     void Start() {
         player = ReInput.players.GetPlayer(playerId);
+        Color c = GetComponent<Renderer>().material.GetColor("_BaseColor");
+        c.a = .5f;
+        GetComponentInChildren<ParticleSystemRenderer>().material.SetColor("_TintColor", c);
     }
 
     void Update() {
@@ -104,7 +109,8 @@ public class FriendController : MonoBehaviour
         float moveSpeed = movementVector.magnitude;
         if (moveSpeed < 0f) moveSpeed *= -1f;
         if (moveSpeed > 1f) moveSpeed = 1f;
-
+        ParticleSystem.EmissionModule mod = runParticle.emission;
+        mod.rateOverTime = moveSpeed * 75f;
         Vector3 movePos = transform.position + movementVector.normalized * moveSpeed * speed;
         movePos.y = transform.position.y;
         rigid.MovePosition(movePos);

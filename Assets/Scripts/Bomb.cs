@@ -12,6 +12,11 @@ public class Bomb : MonoBehaviour {
     public Material lit;
     public Color explodeColor;
 
+    private ParticleSystem ps;
+
+    private void Awake() {
+        ps = GetComponentInChildren<ParticleSystem>();
+    }
 
     public void Thrown() {
         StartCoroutine(Fuse());
@@ -25,8 +30,8 @@ public class Bomb : MonoBehaviour {
         DOTween.To(()=>old,x=>renderer.material.SetColor("_BaseColor",x),explodeColor,fuseTime);
         
         yield return new WaitForSeconds(fuseTime);
-        
-        
+
+        ps.Play();
         List<Collider> hit = new List<Collider>(Physics.OverlapSphere(transform.position, blastRadius));
         foreach(Collider c in hit) {
             if (c.tag == "Player") {
@@ -39,6 +44,10 @@ public class Bomb : MonoBehaviour {
                 c.GetComponent<Rigidbody>().AddForce(dir);
             }
         }
-       Destroy(gameObject);
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Rigidbody>().isKinematic = true;
+        yield return new WaitForSeconds(3f);
+        Destroy(gameObject);
     }
 }
