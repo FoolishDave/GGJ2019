@@ -12,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject playDecal;
     public GameObject optionsDecal;
     public GameObject quitDecal;
+    public GameObject questionDecal;
     public TextMeshProUGUI questionText;
 
     public GameObject gameUI;
@@ -41,6 +42,7 @@ public class MenuManager : MonoBehaviour
         quitDecal.SetActive(false);
         gameUI.SetActive(true);
         menuUI.SetActive(false);
+        questionDecal.SetActive(false);
         GameManager.instance.StartGame();
     }
 
