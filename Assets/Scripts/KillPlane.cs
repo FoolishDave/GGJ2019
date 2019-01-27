@@ -5,6 +5,10 @@ using UnityEngine;
 public class KillPlane : MonoBehaviour
 {
     void OnTriggerEnter(Collider other) {
+        if (other.GetComponent<RespawnOnFall>() != null) {
+            other.GetComponent<RespawnOnFall>().Respawn();
+            return;
+        }
         if (other.tag == "Player") {
             FriendController f = other.GetComponent<FriendController>();
             RoundManager.instance.TriggerPlayerDeath(f.playerNum);
