@@ -155,10 +155,14 @@ public class FriendController : MonoBehaviour
             otherPlayer.pickedUp = false;
             otherPlayer.knockdownTimer = knockdownTime;
         }
+        if (holding.GetComponent<Bomb>() != null) {
+            holding.GetComponent<Bomb>().Thrown();
+        }
         holding = null;
         Vector3 throwVector = transform.forward.normalized;
         throwVector = Quaternion.AngleAxis(throwAngle, transform.right) * throwVector * throwForce;
         heldRigid.AddForce(throwVector);
+        
     }
 
     public void Respawn() {
@@ -176,7 +180,7 @@ public class FriendController : MonoBehaviour
         transform.DORotate(Vector3.zero, .3f);
     }
 
-    private void KnockDown(float impulse) {
+    public void KnockDown(float impulse) {
         Debug.Log("Knocked down.");
         rigid.constraints = RigidbodyConstraints.None;
         knockedDown = true;
