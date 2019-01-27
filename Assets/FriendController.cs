@@ -32,7 +32,8 @@ public class FriendController : MonoBehaviour
     private bool interact;
     private bool leave;
     private bool throwHeld;
-    private bool knockedDown;
+    public bool knockedDown;
+    public bool pickedUp;
     private float knockdownTimer;
 
     private void Awake() {
@@ -74,6 +75,16 @@ public class FriendController : MonoBehaviour
             return;
         }
 
+        if (pickedUp) {
+            if (jump && Random.Range(0f,1f) > .9f) {
+                transform.parent = transform.parent.parent.parent;
+                pickedUp = false;
+                rigid.isKinematic = false;
+                Standup();
+            }
+            return;
+        }
+
         if (knockedDown) {
             if (jump && knockdownTimer < 0) {
                 Standup();
@@ -83,16 +94,24 @@ public class FriendController : MonoBehaviour
         }
 
         float rotateAmount = Vector3.Cross(movementVector.normalized, transform.forward).y;
-        Vector3 angular = rigid.angularVelocity;
-        angular.y = -rotateAmount * rotateSpeed;
-        rigid.angularVelocity = angular;
+        if (Vector3.Angle(transform.forward, movementVector) > 5) {
+            Vector3 angular = rigid.angularVelocity;
+            angular.y = -rotateAmount * rotateSpeed;
+            rigid.angularVelocity = angular;
+        } else {
+            rigid.angularVelocity = Vector3.zero;
+        }
         float moveSpeed = movementVector.magnitude;
         if (moveSpeed < 0f) moveSpeed *= -1f;
         if (moveSpeed > 1f) moveSpeed = 1f;
 
-        Vector3 movePos = transform.position + transform.forward.normalized * moveSpeed * speed;
+        Vector3 movePos = transform.position + movementVector.normalized * moveSpeed * speed;
         movePos.y = transform.position.y;
         rigid.MovePosition(movePos);
+
+        if (pickupPoint.transform.childCount == 0) {
+            holding = null;
+        }
 
         if (interact && holding == null) {
             Pickup();
@@ -106,11 +125,16 @@ public class FriendController : MonoBehaviour
     }
 
     private void Pickup() {
-
-        IEnumerable<Collider> colliders = Physics.OverlapBox(transform.position + transform.forward * pickupOffset, pickupBox).Where(x => x.transform != transform && x.tag == "Pickup");
+        if (holding != null) return;
+        IEnumerable<Collider> colliders = Physics.OverlapBox(transform.position + transform.forward * pickupOffset, pickupBox).Where(x => x.transform != transform && (x.tag == "Pickup" || x.tag == "Player"));
         if (!colliders.Any()) return;
         Collider pickupTarget = colliders.Aggregate((i1, i2) => Vector3.Distance(i1.transform.position, transform.position) < Vector3.Distance(i2.transform.position, transform.position) ? i1 : i2);
         if (pickupTarget != null) {
+            if (pickupTarget.tag == "Player" && !pickupTarget.GetComponent<FriendController>().knockedDown) {
+                return;
+            } else if (pickupTarget.tag == "Player") {
+                pickupTarget.GetComponent<FriendController>().pickedUp = true;
+            }
             pickupTarget.transform.parent = pickupPoint.transform;
             pickupTarget.transform.localPosition = Vector3.zero;
             holding = pickupTarget.gameObject;
@@ -126,6 +150,11 @@ public class FriendController : MonoBehaviour
         Rigidbody heldRigid = holding.GetComponent<Rigidbody>();
         heldRigid.isKinematic = false;
         holding.transform.parent = transform.parent;
+        if (holding.tag == "Player") {
+            FriendController otherPlayer = holding.GetComponent<FriendController>();
+            otherPlayer.pickedUp = false;
+            otherPlayer.knockdownTimer = knockdownTime;
+        }
         holding = null;
         Vector3 throwVector = transform.forward.normalized;
         throwVector = Quaternion.AngleAxis(throwAngle, transform.right) * throwVector * throwForce;
@@ -139,7 +168,7 @@ public class FriendController : MonoBehaviour
         transform.eulerAngles = new Vector3(Random.Range(0f, 360f), Random.Range(0f, 360f), Random.Range(0f, 360f));
     }
 
-    private void Standup() {
+    public void Standup() {
         rigid.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
         knockedDown = false;
         knockdownTimer = knockdownCooldown;
@@ -152,5 +181,15 @@ public class FriendController : MonoBehaviour
         rigid.constraints = RigidbodyConstraints.None;
         knockedDown = true;
         knockdownTimer = knockdownTime * impulse;
+        if (holding != null) {
+            holding.GetComponent<Rigidbody>().isKinematic = false;
+            holding.transform.parent = transform.parent;
+            if (holding.tag == "Player") {
+                FriendController otherPlayer = holding.GetComponent<FriendController>();
+                otherPlayer.pickedUp = false;
+                otherPlayer.Standup();
+            }
+            holding = null;
+        }
     }
 }

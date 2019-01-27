@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour {
     //public static List<FriendController> players;
     public static Dictionary<int, int> playerScores;
 
-    public bool gameRunning;
+    public bool gameRunning = false;
 
     void Awake() {
         instance = this;

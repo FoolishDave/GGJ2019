@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
+using DG.Tweening;
 
 public class MenuManager : MonoBehaviour
 {
@@ -10,6 +12,7 @@ public class MenuManager : MonoBehaviour
     public GameObject playDecal;
     public GameObject optionsDecal;
     public GameObject quitDecal;
+    public TextMeshProUGUI questionText;
 
     public GameObject gameUI;
     public GameObject menuUI;
@@ -51,5 +54,10 @@ public class MenuManager : MonoBehaviour
 
     public void Quit() {
         Application.Quit();
+    }
+
+    public void GetHelp() {
+        Debug.Log("getting help");
+        questionText.DOFade(1f, 1f).OnComplete(() => questionText.DOFade(0f, .5f));
     }
 }
