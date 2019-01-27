@@ -8,6 +8,7 @@ TagManager:
   - Ground
   - SoccerBall
   - Killplane
+  - Coin
   layers:
   - Default
   - TransparentFX
