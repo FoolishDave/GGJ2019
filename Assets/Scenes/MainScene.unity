@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.059497762, g: 0.08358882, b: 0.13009183, a: 1}
+  m_IndirectSpecularColor: {r: 0.037641965, g: 0.047974292, b: 0.061336875, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1257,6 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3696b9070839ef64ebb787764814073e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  winScore: 50
   gameRunning: 0
 --- !u!4 &177810472
 Transform:
@@ -1922,7 +1923,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 326103020}
-  m_LocalRotation: {x: 0.23364674, y: 0.0000000045129736, z: -0.000000001084447, w: 0.97232157}
+  m_LocalRotation: {x: 0.23364674, y: 0.0000000045129736, z: -0.0000000010844465,
+    w: 0.97232157}
   m_LocalPosition: {x: -0.049999952, y: 8.434999, z: -9.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -3021,7 +3023,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.23364674, y: 0.0000000045129736, z: -0.000000001084447, w: 0.97232157}
+  m_LocalRotation: {x: 0.23364674, y: 0.0000000045129736, z: -0.0000000010844465,
+    w: 0.97232157}
   m_LocalPosition: {x: -0.049999952, y: 5.2090974, z: -6.036688}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3485,6 +3488,7 @@ MonoBehaviour:
   descText: {fileID: 787445245}
   scoreText: {fileID: 972566507674273943}
   timerText: {fileID: 593056447}
+  winText: {fileID: 0}
   scoreTextPrefab: {fileID: 3369972357417854820}
   scoreTextParent: {fileID: 4717866033738392417}
 --- !u!1 &738524064
@@ -5405,6 +5409,56 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1203095337}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1213229189
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1213229190}
+  - component: {fileID: 1213229191}
+  m_Layer: 0
+  m_Name: FallingItems
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1213229190
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213229189}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1354299807}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1213229191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213229189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874a587f53b9fdb4da749663ff61dd5b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  title: Avoid Negativity!
+  desc: Support healthy friendships!
+  settings:
+    playerRespawn: 1
+  items:
+  - {fileID: 8655726043926671793, guid: 7152fd5edc7b5a341ad683634a2c825a, type: 3}
+  spawnRate: 2
 --- !u!1 &1213637092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5960,6 +6014,7 @@ Transform:
   - {fileID: 1103225356}
   - {fileID: 404597368}
   - {fileID: 889566605}
+  - {fileID: 1213229190}
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
