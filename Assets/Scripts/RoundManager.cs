@@ -18,6 +18,10 @@ public class RoundManager : MonoBehaviour {
     public event PlayerEvent onPlayerDeath;
 
     [HideInInspector] public List<FriendController> playersToRespawn;
+
+    public float baseBomb, baseBlock;
+    public UnityEngine.Coroutine bombSpawn, blockSpawn;
+    public GameObject bombPrefab, blockPrefab;
     
 
     void Awake() {
@@ -57,6 +61,15 @@ public class RoundManager : MonoBehaviour {
         }
         currentRound = next;
         settings = currentRound.settings;
+
+        if (bombSpawn != null) StopCoroutine(bombSpawn);
+        if (blockSpawn != null) StopCoroutine(blockSpawn);
+        if (settings.bombSpawn) {
+            bombSpawn = StartCoroutine(SpawnBomb());
+        }
+        if (settings.blockSpawn) {
+            blockSpawn = StartCoroutine(SpawnBlock());
+        }
         currentRound.StartRound();
         UIManager.instance.UpdateRoundUI(currentRound);
         
@@ -65,5 +78,25 @@ public class RoundManager : MonoBehaviour {
     public void SetTimer(float time, Callback c) {
         timer = time;
         timerCallback = c;
+    }
+
+    IEnumerator SpawnBomb() {
+        yield return new WaitForSeconds(baseBomb / settings.bombRate * Random.Range(.4f, .7f));
+        while (true) {
+            Quaternion rot = Quaternion.Euler(Random.Range(-12f,12f),Random.Range(-12f,12f),Random.Range(-12f,12f));
+            Instantiate(bombPrefab, new Vector3(Random.Range(-2f,2f),4,Random.Range(-1f,1f)), rot);
+            yield return new WaitForSeconds(baseBomb / settings.bombRate * Random.Range(.8f, 2f));
+        }
+        
+    }
+
+    IEnumerator SpawnBlock() {
+        yield return new WaitForSeconds(baseBlock / settings.bombRate * Random.Range(.4f, .7f));
+        while (true) {
+            Quaternion rot = Quaternion.Euler(Random.Range(-12f,12f),Random.Range(-12f,12f),Random.Range(-12f,12f));
+            Instantiate(blockPrefab, new Vector3(Random.Range(-2f,2f),4,Random.Range(-1f,1f)), rot);
+            yield return new WaitForSeconds(baseBlock / settings.blockRate * Random.Range(.8f, 2f));
+        }
+        
     }
 }
