@@ -20,10 +20,12 @@ public class FallingItems : RoundAbstract
     }
 
     IEnumerator AwardPoints() {
-        foreach (int p in players) {
-            GameManager.ChangeScore(p, 1);
+        while (true) {
+            foreach (int p in players) {
+                GameManager.ChangeScore(p, 1);
+            }
+            yield return new WaitForSeconds(1f);
         }
-        yield return new WaitForSeconds(1f);
     }
 
     IEnumerator ItemSpawner() {

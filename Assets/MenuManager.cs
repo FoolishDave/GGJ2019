@@ -70,6 +70,6 @@ public class MenuManager : MonoBehaviour
 
     public void GetHelp() {
         Debug.Log("getting help");
-        questionText.DOFade(1f, 1f).OnComplete(() => questionText.DOFade(0f, .5f));
+        questionText.DOFade(1f, 4f).OnComplete(() => questionText.DOFade(0f, .5f));
     }
 }
