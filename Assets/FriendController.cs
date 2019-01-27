@@ -191,6 +191,9 @@ public class FriendController : MonoBehaviour
         rigid.constraints = RigidbodyConstraints.None;
         knockedDown = true;
         knockdownTimer = knockdownTime * impulse;
+        if (knockdownTimer > 3f) {
+            knockdownTimer = 3f;
+        }
         if (holding != null) {
             holding.GetComponent<Rigidbody>().isKinematic = false;
             holding.transform.parent = transform.parent;

@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DG.Tweening;
+using System;
+using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -14,9 +17,14 @@ public class MenuManager : MonoBehaviour
     public GameObject quitDecal;
     public GameObject questionDecal;
     public TextMeshProUGUI questionText;
-
+    public TextMeshProUGUI resolutionText;
+    public TextMeshProUGUI refreshRateText;
+    public AudioMixer mixer;
     public GameObject gameUI;
     public GameObject menuUI;
+    public Slider volumeSlider;
+    public Slider sfxSlider;
+    public Slider musicSlider;
 
 
     private void OnEnable() {
@@ -37,6 +45,7 @@ public class MenuManager : MonoBehaviour
     }
 
     public void PlayGame() {
+        Debug.Log("Starting game");
         playDecal.SetActive(false);
         optionsDecal.SetActive(false);
         quitDecal.SetActive(false);
@@ -58,6 +67,8 @@ public class MenuManager : MonoBehaviour
 
     public void GoToOptions() {
         optionsMenu.SetActive(true);
+        Resolution res = Screen.currentResolution;
+        resolutionText.text = res.width + "x" + res.height;
     }
 
     public void CloseOptions() {
@@ -71,5 +82,37 @@ public class MenuManager : MonoBehaviour
     public void GetHelp() {
         Debug.Log("getting help");
         questionText.DOFade(1f, 4f).OnComplete(() => questionText.DOFade(0f, .5f));
+    }
+
+    public void RaiseResolution() {
+        int index = Array.IndexOf(Screen.resolutions, Screen.currentResolution) + 1;
+        if (index >= Screen.resolutions.Length) index = Screen.resolutions.Length - 1;
+        Screen.SetResolution(Screen.resolutions[index].width, Screen.resolutions[index].height, true);
+        Resolution res = Screen.currentResolution;
+        resolutionText.text = res.width + "x" + res.height;
+    }
+
+    public void LowerResolution() {
+        int index = Array.IndexOf(Screen.resolutions, Screen.currentResolution) - 1;
+        if (index < 0) index = 0;
+        Screen.SetResolution(Screen.resolutions[index].width, Screen.resolutions[index].height, true);
+        Resolution res = Screen.currentResolution;
+        resolutionText.text = res.width + "x" + res.height;
+    }
+
+    public void ChangeMasterVolume() {
+        mixer.SetFloat("MasterVolume", ConvertToDecibel(volumeSlider.value));
+    }
+
+    public void ChangeSfxVolume() {
+        mixer.SetFloat("SFXVolume", ConvertToDecibel(sfxSlider.value));
+    }
+
+    public void ChangeMusicVolume() {
+        mixer.SetFloat("MusicVolume", ConvertToDecibel(musicSlider.value));
+    }
+
+    private float ConvertToDecibel(float _value) {
+        return Mathf.Log10(Mathf.Max(_value, 0.0001f)) * 20f;
     }
 }

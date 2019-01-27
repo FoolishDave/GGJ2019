@@ -46,6 +46,9 @@ public class RoundManager : MonoBehaviour {
     public void NextRound() {
         if (rounds.Count == 0) Debug.Log("Error: No Rounds");
 
+        if (bombSpawn != null) StopCoroutine(bombSpawn);
+        if (blockSpawn != null) StopCoroutine(blockSpawn);
+
         if (GameManager.instance.CheckWin()) return;
 
         timer = 0f; // Cancels timer if still active
@@ -61,9 +64,7 @@ public class RoundManager : MonoBehaviour {
         }
         currentRound = next;
         settings = currentRound.settings;
-
-        if (bombSpawn != null) StopCoroutine(bombSpawn);
-        if (blockSpawn != null) StopCoroutine(blockSpawn);
+        
         if (settings.bombSpawn) {
             bombSpawn = StartCoroutine(SpawnBomb());
         }

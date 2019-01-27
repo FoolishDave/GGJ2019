@@ -17,6 +17,11 @@ public class MenuTriggerButton : MonoBehaviour
 
     private void OnEnable() {
         timer = timeToActivate;
+        playersStanding = 0;
+    }
+
+    private void OnDisable() {
+        playersStanding = 0;
     }
 
     void Update()
@@ -46,6 +51,9 @@ public class MenuTriggerButton : MonoBehaviour
     private void OnTriggerExit(Collider other) {
         if (other.gameObject.tag == "Player") {
             playersStanding--;
+            if (playersStanding < 0) {
+                playersStanding = 0;
+            }
         }
     }
 }
